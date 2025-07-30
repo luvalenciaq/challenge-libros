@@ -1,10 +1,27 @@
 package com.alura.literalura.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "autor")
 public class Autor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private Integer anioNacimiento;
     private Integer anioMuerte;
+
+
+    //DEBO CREAR ESTE CONSTRUCTOR SI O SI PARA PODER CONVERTIR LOS DATOS
+    public Autor(DatosAutor datos){
+        this.nombre = datos.nombre();
+        this.anioNacimiento = datos.anioNacimiento();
+        this.anioMuerte = datos.anioMuerte();
+    }
+
+    public Autor() {
+    }
 
     public String getNombre() {
         return nombre;
