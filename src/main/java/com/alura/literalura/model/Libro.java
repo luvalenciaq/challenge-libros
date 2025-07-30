@@ -2,6 +2,8 @@ package com.alura.literalura.model;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "libro")
 public class Libro {
@@ -10,9 +12,9 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Autor autor;
-    private String idiomas;
+    private String idioma;
     private Integer descargas;
 
     public Libro() {
@@ -25,11 +27,15 @@ public class Libro {
         }else {
             this.autor = new Autor(new DatosAutor("Autor desconocido", null, null));
         }
-        if (datos.idiomas() != null && !datos.idiomas().isEmpty()){
-            this.idiomas = datos.idiomas().get(0); //asi porque es una lista
+        if (datos.idioma() != null && !datos.idioma().isEmpty()) {
+            this.idioma = datos.idioma().get(0);
         } else {
-            this.idiomas = "Idioma desconocido";}
-        this.idiomas = String.join(", ", datos.idiomas());
+            this.idioma = "Idioma desconocido";
+        }
+        this.descargas = datos.descargas();
+    }
+
+    public Libro(Optional<DatosLibro> datos) {
     }
 
     public Long getId() {
@@ -57,11 +63,11 @@ public class Libro {
     }
 
     public String getIdioma() {
-        return idiomas;
+        return idioma;
     }
 
     public void setIdioma(String idioma) {
-        this.idiomas = idioma;
+        this.idioma = idioma;
     }
 
     public Integer getDescargas() {
@@ -74,9 +80,11 @@ public class Libro {
 
     @Override
     public String toString() {
-        return  "Título='" + titulo + '\'' +
-                "\nAutor=" + autor +
-                "\nIdioma='" + idiomas + '\'' +
-                "\nDescargas=" + descargas;
+        return  "\n -------- LIBRO --------"+
+                "\nTítulo='" + titulo + '\'' +
+                "\nAutor=" + autor.getNombre() +
+                "\nIdioma='" + idioma + '\'' +
+                "\nDescargas=" + descargas +
+                "\n ------------------------";
     }
 }
