@@ -43,6 +43,7 @@ El proyecto está organizado por paquetes, respetando los principios de separaci
 6. Top 10 de libros más descargados
 0. Salir
 
+---
 
 ## 🔧 **Configuración**
 La aplicación se conecta a una base de datos PostgreSQL. Para ejecutarla, asegúrate de tener PostgreSQL corriendo y de haber creado una base de datos con el nombre que definas en tu variable de entorno DB_NAME.
@@ -64,7 +65,9 @@ Debes configurar las siguientes variables de entorno en tu sistema:
 - DB_HOST: host y puerto de tu base de datos (ejemplo: localhost:5432, localhost)
 - DB_NAME: nombre de tu base de datos (ejemplo: literalura)
 - DB_USER: usuario de la base de datos (ejemplo: postgres)
-- DB_PASSWORD: contraseña del usuario (ejeplo: con123)
+- DB_PASSWORD: contraseña del usuario (ejemplo: con123)
+
+---
 
 ## ▶️ **Cómo ejecutar el proyecto**
 
@@ -83,6 +86,8 @@ cd challenge-libros
 ./mvnw spring-boot:run
 ```
 5. Interactúa con el menú desde la consola.
+
+---
 
 ## 📚 **Fuente de datos**
 Los datos de los libros provienen de la API pública de Gutendex:
